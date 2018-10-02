@@ -1,4 +1,4 @@
 ## 目次
 
-* [【swift4】Tinderのユーザーインターフェース](Documents/Tinder2.md)
+* [【swift4】Tinderのユーザーインターフェース](Documents/tree/master/Tinder2.md)
 * 
