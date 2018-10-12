@@ -13,8 +13,15 @@
 
 ### Swift説明用
 
-* [【swift4】Tinderのユーザーインターフェース](documents/Tinder2.md)
+* [【Swift4】Tinderのユーザーインターフェース](documents/Tinder2.md)
+* [【Swift4】Firebaseのデータベース「Firestore」の解説](documents/FirestoreQiita.md)
+* [【Swift4】Firebaseのデータベース「Firestore」を利用したToDoアプリの作成](documents/FireStore.md)
+* [【Swift4】Firebaseを用いたプッシュ通知送信機能の実装](documents/PushNotification.md)
+* [【Swift4】変数について](documents/varlet.md)
+* [【Swift4】オブジェクト指向について](documents/object.md)
 
-* [【swift4】Firebaseのデータベース「Firestore」を利用したToDoアプリの作成](documents/FireStore.md)
 
 
+
+
+* swiftのコードの説明。
