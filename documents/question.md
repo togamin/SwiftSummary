@@ -19,3 +19,11 @@ Firebaseからのデータの取得が完了した後に、処理を実行する
 
 [https://github.com/togamin/PushNotificationSample.git](https://github.com/togamin/PushNotificationSample.git)
 
+
+
+### CLLocationの型変換の方法
+
+
+
+
+
