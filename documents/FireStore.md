@@ -1,6 +1,6 @@
 ## 【swift4】Firestoreを利用した簡易ToDoアプリの作成
 
-![FirestoreSample00](/Users/togamiyuki/Desktop/IOSTeach/SwiftSummary/images/FirestoreSample00.jpg)
+<img src = "../images/FirestoreSample00.jpg">
 
 <h2>はじめに</h2>
 
@@ -31,25 +31,25 @@ Googleが提供する、Firebaseのデータベース「Firestore」を用いて
 
 <a href = "https://firebase.google.com/?hl=ja">Firebaseのホームページ</a>に行き、ログインします。すると、以下のようなページに遷移するので、`プロジェクトを追加`を選択し、プロジェクトの登録を行います。
 
-![Screen Shot 2018-10-17 at 10.04.26](/Users/togamiyuki/Desktop/IOSTeach/SwiftSummary/images/Screen Shot 2018-10-17 at 10.04.26.png)
+<img src = "../images/Screen Shot 2018-10-17 at 10.04.26.png">
 
 プロジェクト名を記入し、全てにチェックを入れ`プロジェクトを作成`を選択して完了です。
 
-![Screen Shot 2018-10-17 at 10.15.54](/Users/togamiyuki/Desktop/IOSTeach/SwiftSummary/images/Screen Shot 2018-10-17 at 10.15.54.png)
+<img src = "../images/Screen Shot 2018-10-17 at 10.15.54.png">
 
 プロジェクトの作成が完了すると、以下のような画面に遷移します。
 
-![FirestoreSampleToDo1](/Users/togamiyuki/Desktop/IOSTeach/SwiftSummary/images/FirestoreSampleToDo1.jpg)
+<img src = "../images/FirestoreSampleToDo1.jpg">
 
 次に上図の`iOS`を選択します。すると、以下のような画面に遷移します。Xcodeで立ち上げた、プロジェクトのバンドルIDを入力し、`アプリを登録`を押します。
 
 アプリのニックネームやApp Store IDは省略します。
 
-![FirestoreSampleToDo2](/Users/togamiyuki/Desktop/IOSTeach/SwiftSummary/images/FirestoreSampleToDo2.jpg)
+<img src = "../images/FirestoreSampleToDo2.jpg">
 
 次に以下のような画面に遷移するので、`GoogleService-Info.plist` ファイルをダウンロードし、Xcodeのプロジェクトに追加します。
 
-![Screen Shot 2018-10-17 at 10.41.32](/Users/togamiyuki/Desktop/IOSTeach/SwiftSummary/images/Screen Shot 2018-10-17 at 10.41.32.png)
+<img src = "../images/Screen Shot 2018-10-17 at 10.41.32.png">
 
 ここで一つ気をつけないといけないことがあります。
 
@@ -78,7 +78,7 @@ pod 'Firebase/Firestore'
 
 新しく白色のファイルが作成されているので、アプリの開発はそのファイルを使って行きます。
 
-![FirestoreSampleToDo3](/Users/togamiyuki/Desktop/IOSTeach/SwiftSummary/images/FirestoreSampleToDo3.jpg)
+<img src = "../images/FirestoreSampleToDo3.jpg">
 
 次に、白色のファイルを開き、`AppDelegate.swift`ファイルに、以下の2行を下の写真のように書きます。
 
@@ -89,7 +89,8 @@ FirebaseApp.configure()
 
 
 
-![Screen Shot 2018-10-17 at 13.33.00](/Users/togamiyuki/Desktop/IOSTeach/SwiftSummary/images/Screen Shot 2018-10-17 at 13.33.00.png)
+
+<img src = "../images/Screen Shot 2018-10-17 at 13.33.00.png">
 
 `import Firebase`でFirebaseのフレームワークをSwiftで使えるようにし、`FirebaseApp.configure()`で、Firebaseの初期設定をします。
 
@@ -101,7 +102,7 @@ Firebaseと連携が終わったので、次はデータベース「Firestore」
 
 データベースの作成を行います。アクセス権限に関するダイアログが出てくると思うのですが、後から変更できるので`テストモード`にチェックを入れ、始めます。
 
-![Screen Shot 2018-10-17 at 15.55.02](/Users/togamiyuki/Desktop/IOSTeach/SwiftSummary/images/Screen Shot 2018-10-17 at 15.55.02.png)
+<img src = "../images/Screen Shot 2018-10-17 at 15.55.02.png">
 
 次に、Xcodeの作成したプロジェクトの`ViewController.swift`を開き以下のようにコードを記入します。
 
@@ -163,7 +164,7 @@ db.collection("ToDoList").document(id)(data: data){}
 
 データをデータベースに入れた後のFirestoreの状態は以下のようになっています。
 
-![Screen Shot 2018-10-17 at 23.36.45](/Users/togamiyuki/Desktop/IOSTeach/SwiftSummary/images/Screen Shot 2018-10-17 at 23.36.45.png)
+<img src = "../images/Screen Shot 2018-10-17 at 23.36.45.png">
 
 <h3>データの読み込み</h3>
 
@@ -254,12 +255,6 @@ Firebaseへの連携、Firestoreへのデータの処理について書いてき
 紹介した簡易的なToDoアプリのコードはGitHubにあげているので、参考にしながら作ってみてください。
 
 良い練習になると思います。
-
-
-
-ToDo
-
-
 
 
 
