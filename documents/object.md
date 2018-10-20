@@ -29,7 +29,7 @@
 * その設計図を元に、オブジェクト(物)を作成する。
 * 作成したオブジェクトを動作させる。
 
-![object01](/Users/togamiyuki/Desktop/IOSTeach/SwiftSummary/images/object01.png)
+<img src = "../images/object01.png">
 
 上の図の例では、まずコック、味噌ラーメンの設計図(クラス)を用意します。設計図を用意したら、その設計図をもとに、コックを作成します(インスタンス化)。
 
