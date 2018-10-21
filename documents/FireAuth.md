@@ -221,6 +221,16 @@ import TwitterKit
 
 //didFinishLaunchingWithOptionsの関数の中
 TWTRTwitter.sharedInstance().start(withConsumerKey:"*****", consumerSecret:"********")
+
+//登録したURLスキームのURLを開き、サインインに関する情報を受け取る。
+func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
+        -> Bool {
+	if TWTRTwitter.sharedInstance().application(application, open: url, options: options) {
+    	print("memo:Twitterサインイン")
+    	return true
+ 	}
+	return false
+s}
 ```
 
 次に`LoginViewController.swift`に以下を追加。Twitterログインのボタンと、ボタンを押した時の処理を記述します。
@@ -261,7 +271,7 @@ Twitterログイン以外のソースコードを以下に載せてます。よ�
 
 <h2>まとめ</h2>
 
-Emailとパスワードを用いたログイン方法に加え、Googleログイン、Twitterログインの方法について説明しました。
+Emailとパスワードを用いたログイン方法に加え、Googleログイン、Twitterログインの方法について説明しました。s
 
 
 
@@ -276,3 +286,8 @@ Emailとパスワードを用いたログイン方法に加え、Googleログイ
 <a href = "https://qiita.com/tfutada/items/1f2b0c5e5f7214bae61d">＞Firebase の Auth 機能を使ってみる。Swift版</a>
 
 <a href = "https://firebase.google.com/docs/auth/ios/google-signin?hl=ja">＞iOS で Google ログインを使用して認証する</a>
+
+
+
+
+

@@ -23,9 +23,8 @@
 * [【Swift4】Firestoreを利用した簡易ToDoアプリの作成](documents/FireStore.md)
 * [【Swift4】Firebaseを用いたユーザーログイン機能の実装(未完)](documents/FireAuth.md)
 * [【Swift4】Firebaseを用いたプッシュ通知送信機能の実装(未完)](documents/PushNotification.md)
+* [【Swift4】Firebase Storageへの画像保存方法](documents/FireStorage.md)
 * 
-
-
 
 
 
