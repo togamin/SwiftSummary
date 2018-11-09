@@ -1,16 +1,20 @@
-## 【Swift4】FirebaseAuthを用いたユーザーログイン機能の実装
+## 【Swift4】FirebaseAuthを用いたユーザー認証機能の実装
+
+<img src = "../images/FireAuthThum.jpg">
 
 ### はじめに
 
 
 
-<h2>Authとは</h2>
+<h2>Firebase Authとは</h2>
 
-「Auth」とは日本語で「認証」という意味です。
+Firebase Authは、ユーザーの管理を行ってくれるFirebaseの機能です。
+
+「Auth」にはとは日本語で「認証」という意味があります。
 
 TwitterやFacebook、Instagram等のSNSアプリを使用する際、誰が投稿したか誰がコメントしたかなど、ユーザーを特定する必要があります。
 
-そのための機能がログイン機能であり、ユーザー本人かどうかを確認する必要があります。
+そのための機能がユーザー認証機能であり、ユーザー本人かどうかを確認する必要があります。
 
 その一連の流れを「Auth」と言います。
 
@@ -39,7 +43,7 @@ Firebaseのコンソールから、`Auth`>`ログイン方法`を選択し、`�
 
 <h3>新規登録の処理</h3>
 
-新規登録ボタンを押した時に、実行される部分に、以下のコードを記述します。登録する際にエラーが出れば、それを表示し、成功すれば、登録したメールアドレスが表示されるようになっています。
+新規登録ボタンを押した時に、実行される部分に、以下のコードを記述します。登録する際にエラーが出れば、それを表示し、成功すれば、登録したメールアドレスが、コンソールに表示されるようになっています。
 
 ```swift
 Auth.auth().createUser(withEmail: emilTextField.text!, password: passTextField.text!) { (authResult, error) in
@@ -99,12 +103,20 @@ URLスキームとは、ネットワーク上の位置(アドレス、ある情�
 
 <h3>AppDelegateを修正</h3>
 
-以下のコードで、先ほどURLスキームに登録したURLを開き、サインインに関するデータを受け取る。
+以下のコードで、先ほどURLスキームに登録したURLを開き、サインインに関するデータを受け取ります。
+
+//以下コード修正。
+
+
 
 ```swift
 func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
         -> Bool {
-return GIDSignIn.sharedInstance().handle(url,sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,annotation: [:])
+	if GIDSignIn.sharedInstance().handle(url,sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,annotation: [:]){
+                print("memo:googleサインイン")
+                return true
+	}
+	return false
 }
 ```
 
@@ -271,7 +283,7 @@ Twitterログイン以外のソースコードを以下に載せてます。よ�
 
 <h2>まとめ</h2>
 
-Emailとパスワードを用いたログイン方法に加え、Googleログイン、Twitterログインの方法について説明しました。s
+Emailとパスワードを用いたログイン方法に加え、Googleログイン、Twitterログインの方法について説明しました。
 
 
 

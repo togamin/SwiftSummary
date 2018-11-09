@@ -1,0 +1,214 @@
+## 【Swift4】Instagram風ImagePickerについて
+
+
+
+<a href = "https://github.com/Yummypets/YPImagePicker.git">＞https://github.com/Yummypets/YPImagePicker.git</a>
+
+
+
+Instagram風のImagePickerを使うにあたって必要なライブラリをインストーすします。
+
+```swift
+pod 'YPImagePicker'
+```
+
+`Info.plist`を右クリックし、`Open As`＞`Soure Code`
+
+
+
+```swift
+<key>NSCameraUsageDescription</key>
+<string>yourWording</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>yourWording</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>yourWording</string>
+```
+
+モジュールを追加します。
+
+
+
+```swift
+import YPImagePicker
+```
+
+<h2>Instagram風ImagePickerの表示</h2>
+
+以下のように、`viewDidAppear`の中に以下のコードを追加すると、画面が表示された後に、インスタグラムで使われているような、写真を撮ったり、画像を取得する画面が表示されます。
+
+```swift
+override func viewDidAppear(_ animated: Bool) {
+    let picker = YPImagePicker()
+    picker.didFinishPicking { [unowned picker] items, cancelled in
+    	for item in items {
+         	switch item {
+                case .photo(let photo):
+                    print("phote",photo.image)
+                case .video(let video):
+                    print("video",video)
+        	}
+       	}
+        if cancelled {
+           //「Camcel」ボタンが押された時の処理
+         }else{
+           //「Next」ボタンが押された時の処理
+         }
+    }
+    //Pickerを表示するコード
+    present(picker, animated: true, completion: nil)
+}
+```
+
+<h2>選択した画像を別のViewControllerに表示する</h2>
+
+
+
+選択した写真を入れるための変数を用意います。
+
+```swift
+var willPostImage:UIImage!
+```
+
+photoを取得後、その変数の中に取得した画像を代入します。
+
+```swift
+switch item {
+   	case .photo(let photo):
+       	print("phote",photo.image)
+    	//以下の一文を追加
+    	self.willPostImage = photo.image
+   	case .video(let video):
+     	print("video",video)
+}
+```
+
+
+
+
+
+<h2>各種設定</h2>
+
+```swift
+
+```
+
+
+
+
+
+<h2>NavigationBarのデザインの変更について</h2>
+
+```swift
+//NavigationBarの背景画像
+let coloredImage = UIImage(named:"backImage.jpg")
+UINavigationBar.appearance().setBackgroundImage(coloredImage, for: UIBarMetrics.default)
+
+//NavigationBarの文字の色
+//タイトル
+UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white ]
+
+//左のボタン「Cancel」
+UINavigationBar.appearance().tintColor = .white
+
+//右のボタン「Next」
+config.colors.tintColor = .white
+```
+
+<h2>画面の色の変更について</h2>
+
+写真の背景画像`Pods`フォルダ＞`YPImagePicker`フォルダの中のファイルを変更することによって、色を変えます。
+
+```swift
+//ライブラリ画面の背景色の変更
+//「YPAssetViewContainer.swift」ファイル
+override func awakeFromNib() {
+    self.backgroundColor = .cyan
+    //...
+}
+
+
+//フィルター画面の背景色の変更
+//「YPFiltersView.swift」ファイル
+convenience init() {
+    imageView.backgroundColor = .yellow
+    collectionViewContainer.backgroundColor = .orange
+    //...
+}
+
+
+//カメラで写真を撮るボタンの部分の色の変更
+//「YPCameraView.swift」ファイル
+convenience init(overlayView: UIView? = nil) {
+  	self.init(frame: .zero)
+    buttonsContainer.backgroundColor = .green
+    //...
+}
+```
+
+<h2>タブの色の変更について</h2>
+
+`Library`や`Photo`タブの色の変更。`Pods`フォルダ＞`YPImagePicker`フォルダ＞`YPMenuItem.swift`
+
+の`setup()`関数の中の`backgroundColor`を変更する。
+
+```swift
+//タブの色の変更
+//「YPMenuItem.swift」ファイル
+func setup() {
+    //タブの色の変更。
+ 	backgroundColor = .blue
+        
+   	sv(
+    	textLabel,
+       	button
+  	)
+    //・・・
+```
+
+<h2>画面遷移について</h2>
+
+```swift
+//viewDidAppearの中に記述
+//ストーリーボードを指定
+let storyboard = UIStoryboard(name: "Main", bundle: nil)
+// フォトライブラリーで画像が選択された時の処理
+guard let photeViewController = storyboard.instantiateViewController(withIdentifier: "photoEdit") as? photeViewController else {
+  	return
+}
+
+
+//photo.image取得後に、「photeViewControlle」のgetPhotoに写真情報を入れる。
+for item in items {
+ 	switch item {
+      	case .photo(let photo):
+          	print(photo)
+        	photeViewController.getPhoto = photo.image//ここ
+       	case .video(let video):
+          	print(video)
+     }
+}
+```
+
+
+
+```swift
+class photeViewController: UIViewController {
+    //前の画面がら画像データを受け取るための、変数。
+    var getPhoto:UIImage!
+    @IBOutlet weak var getPhotoView: UIImageView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //imageViewに画像を入れる
+        getPhotoView.image = getPhoto
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+}
+```
+
+
+
