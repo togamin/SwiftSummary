@@ -46,10 +46,10 @@
 * [【Swift4】TextFieldを用いた検索補完機能の実装について](documents/SearchSample.md)
 * [【Swift4】インスタ風ImagePicker](documents/InstaImagePicker.md)
 * [【Swift4】クラス・メソッドの書き方](documents/howClass.md)
-* 　[【Swift4】オブジェクト指向プログラミングのポリモーフィズム](documents/Polymorphism.md)
-* 　
-* 　
+* [【Swift4】オブジェクト指向プログラミングのポリモーフィズム](documents/Polymorphism.md)
+* [【Swift4】AppDelegete.swiftファイルについて](documents/AppDelegete.md)
 * 
-
+* 
+* 
 * swiftのコードの説明。
 * TestFlight
