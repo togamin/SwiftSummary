@@ -4,86 +4,172 @@
 
 <a href = "https://github.com/Yummypets/YPImagePicker.git">＞https://github.com/Yummypets/YPImagePicker.git</a>
 
+<h2>Instagram風ImagePickerについて</h2>
 
 
-Instagram風のImagePickerを使うにあたって必要なライブラリをインストーすします。
+
+<h2>実装手順</h2>
+
+<h3>ライブラリのインストール</h3>
+
+Instagram風のImagePickerを使うにあたって必要なライブラリをインストールします。
 
 ```swift
 pod 'YPImagePicker'
 ```
 
-`Info.plist`を右クリックし、`Open As`＞`Soure Code`
 
 
-
-```swift
-<key>NSCameraUsageDescription</key>
-<string>yourWording</string>
-<key>NSPhotoLibraryUsageDescription</key>
-<string>yourWording</string>
-<key>NSMicrophoneUsageDescription</key>
-<string>yourWording</string>
-```
+<h3>バージョン違いによるエラーの修正</h3>
 
 モジュールを追加します。
-
-
 
 ```swift
 import YPImagePicker
 ```
 
-<h2>Instagram風ImagePickerの表示</h2>
 
-以下のように、`viewDidAppear`の中に以下のコードを追加すると、画面が表示された後に、インスタグラムで使われているような、写真を撮ったり、画像を取得する画面が表示されます。
+
+`command`+ `b`を押して、一旦ビルドします。
+
+バージョン違いによるエラーがたくさん出るので`Fix`を押して直していきます。
+
+結構めんどくさいです。(50個ぐらいでる)
+
+
+
+<h3>カメラ・ライブラリへのアクセス権に関する設定</h3>
+
+`Info.plist`を右クリックし、`Open As`＞`Soure Code`の`dict`タグの中に以下を記入します。
 
 ```swift
-override func viewDidAppear(_ animated: Bool) {
-    let picker = YPImagePicker()
-    picker.didFinishPicking { [unowned picker] items, cancelled in
-    	for item in items {
-         	switch item {
-                case .photo(let photo):
-                    print("phote",photo.image)
-                case .video(let video):
-                    print("video",video)
-        	}
+<key>NSCameraUsageDescription</key>
+<string>カメラでの撮影が必要です。</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>PhotoLibrary写真の使用に必要です。</string>
+```
+
+これはカメラやライブラリの使用許可を各ユーザーに求めるためのアラートを表示します。
+
+`<string></string>`タグの中には、使用目的を記述します。これを記述しないと、カメラやライブラリを扱うことはできません。
+
+
+
+<h3>Instagram風ImagePickerの表示</h3>
+
+以下のコードをインスタ風イメージピッカーを表示させたい場所に記入します。サンプルコードでは、ボタンを押した時に動作する関数の中に、以下のコードを記述しています。
+
+
+
+画面が表示された後に、インスタグラムで使われているような、写真を撮ったり、画像を取得する画面が表示されます。
+
+```swift
+//「YPImagePicker」クラスのインスタンス化
+let picker = YPImagePicker()
+
+//Pickerが閉じられた時に動作する。
+picker.didFinishPicking { [unowned picker] items, cancelled in
+   	for item in items {
+    	switch item {
+        	case .photo(let photo):
+            	print("phote",photo.image)
+          	case .video(let video):
+               	print("video",video)
        	}
-        if cancelled {
-           //「Camcel」ボタンが押された時の処理
-         }else{
-           //「Next」ボタンが押された時の処理
-         }
-    }
-    //Pickerを表示するコード
-    present(picker, animated: true, completion: nil)
+   	}
+    //「Cancel」ボタンが押された時と、「Next」ボタンが押された時の動作。
+   	if cancelled {
+      	//「Cancel」ボタンが押された時の処理
+        picker.dismiss(animated: true, completion: nil)
+   	}else{
+       	//「Next」ボタンが押された時の処理
+        picker.dismiss(animated: true, completion: nil)
+   	}
 }
+//Pickerを表示するコード
+present(picker, animated: true, completion: nil)
 ```
 
-<h2>選択した画像を別のViewControllerに表示する</h2>
+<h3>選択した画像を別のViewControllerに表示する</h3>
 
+次にピッカービューで、選択した画像をViewControllerに表示するコードを書きます。
 
-
-選択した写真を入れるための変数を用意います。
+まず、選択した写真を入れるための変数を用意します。
 
 ```swift
-var willPostImage:UIImage!
+var selectPhoto:UIImage!
 ```
 
-photoを取得後、その変数の中に取得した画像を代入します。
+写真を取得後、その変数の中に、取得した画像を代入します。
 
 ```swift
 switch item {
    	case .photo(let photo):
        	print("phote",photo.image)
     	//以下の一文を追加
-    	self.willPostImage = photo.image
+    	self.selectPhoto = photo.image
    	case .video(let video):
      	print("video",video)
 }
 ```
 
+次に、画像を表示するコードを書きます。
 
+```swift
+//UIImageViewを配置し、プログラムと紐ずける。
+@IBOutlet weak var imageView: UIImageView!
+
+//画面が表示される直前に呼ばれる。
+override func viewWillAppear(_ animated: Bool) {
+  	//selectPhotoにUIImageが入っているなら、その画像を表示。入っていないなら、デフォルト画像を表示。
+  	if selectPhoto != nil{
+     	imageView.image = selectPhoto
+   	}else{
+       	imageView.image = UIImage(named: "default.jpg")
+  	}
+}
+```
+
+ImagePickerを閉じた時に、`selectPhoto`に画像のデータが入っていれば、その画像を表示し、入っていなければ、デフォルトで用意していた画像を表示します。
+
+<h2>GitHubについて</h2>
+
+サンプルコードは以下に載せてるので、参考にしてください。
+
+<a href = "https://github.com/togamin/InstaImagePicker.git">＞https://github.com/togamin/InstaImagePicker.git</a>
+
+
+
+<h2>まとめ</h2>
+
+
+
+
+
+
+
+**参考**
+
+<a href = "https://github.com/Yummypets/YPImagePicker.git">＞https://github.com/Yummypets/YPImagePicker.git</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>デザインの変更</h2>
+
+インスタ風のイメージピッカービューのデザイン、色の変更方法について書いていきます。
+
+<h3>NavigationBarのデザインの変更について</h3>
 
 
 
