@@ -48,6 +48,8 @@
 * [【Swift4】クラス・メソッドの書き方](documents/howClass.md)
 * [【Swift4】オブジェクト指向プログラミングのポリモーフィズム](documents/Polymorphism.md)
 * [【Swift4】AppDelegete.swiftファイルについて](documents/AppDelegete.md)
+* [【Swift4】ジェスチャー 機能を用いてUIImageViewのドラッグ機能を実装](documents/gesture.md)
+* 
 * 
 * 
 * 
