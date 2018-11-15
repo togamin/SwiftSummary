@@ -114,21 +114,80 @@ for($i = 1;$i < 10;$i++){
 //########################
 for($i = 1;$i <= 100;$i++){
 	if($i%3 == 0 && $i%5 == 0){
-		echo "FizzBuzz"." ";
+		echo "FizzBuzz"."<br>";
 	}elseif($i%3 == 0){
-		echo "Fizz"." ";
+		echo "Fizz"."<br>";
 	}elseif($i%5 == 0){
-		echo "Buzz"." ";
+		echo "Buzz"."<br>";
 	}else{
-		echo $i." ";
+		echo $i."<br>";
 	}
 }
 
+//########################
+ echo "<br><br>課題10<br><br>";
+//########################
+echo "素数：1とその数以外の数では割り切れない数字<br>";
+
+//-------------------
+//       解答1
+//-------------------
+$start = microtime(true);//処理時間計測用
+echo "2<br>";
+for($i = 2;$i <= 1000;$i++){//1は素数じゃないので2から始める
+	for($j = 2;$j < $i;$j++){
+		if($i%$j == 0){
+			//echo $i."素数じゃない<br>";
+			break;
+		}elseif($j == $i - 1){
+			echo $i."<br>";
+		}
+	}
+}
+
+$end = microtime(true);
+echo "処理時間：" . ($end - $start) . "秒<br>";
+
+//-------------------
+//       解答2
+//エラトステネスの篩:自然数nが√nを越えない最大の整数以下の全ての素数で割り切れなければ，nは素数である。
+//ステップ 1:探索リストに2からxまでの整数を昇順で入れる。
+//ステップ 2:探索リストの先頭の数を素数リストに移動し、その倍数を探索リストから篩い落とす。
+//ステップ 3:上記の篩い落とし操作を探索リストの先頭値がxの平方根に達するまで行う。
+//ステップ 4:探索リストに残った数を素数リストに移動して処理終了。
+//-------------------
+$start = microtime(true);
+$max = 1000;
+$sosuNum = [];
+// maxの平方根の小数点切り捨て
+$sqrt = floor(sqrt($max));
+//素数かどうか判定する値を全て入れる
+for ($i=2; $i<=$max; $i++) {
+	$numArray[$i] = $i;
+}
+//全部の$numArrayの要素に対する処理.0番目には2が入っている。
+for ($i=2; $i<=$sqrt; $i++) {
+	if(isset($numArray[$i])){
+		for ($j=$i*2; $j<=$max; $j+=$i) {
+			unset($numArray[$j]);
+		}
+	}
+}
+foreach ($numArray as $num) {
+	echo $num."<br>";
+}
+
+$end = microtime(true);
+echo "処理時間：" . ($end - $start) . "秒<br>";
 
 
-
-
-
+echo "複数やり方を思いついた時は、処理速度を比較してみる。";
+/*
+echo "<pre>";
+var_dump($numarray);
+echo "</pre>";
+*/
+?>
 
 
 
