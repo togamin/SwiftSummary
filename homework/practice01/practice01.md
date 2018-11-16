@@ -1,4 +1,4 @@
-## Basic練習課題
+## Basic練習課題【初級編】
 
 * ファイル名は**「basic_practice.php」**にしてください。
 
