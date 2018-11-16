@@ -1,11 +1,10 @@
-## 【Swift4】ジェスチャー 機能を用いてUIImageViewのドラッグ機能を実装
+## 【Swift4】ジェスチャー 機能を用いたUIImageViewのドラッグ機能の実装
 
 
 
 <h2>今回作成するもの</h2>
 
 * ボタンを押すとオブジェクトを作成
-* ボタンをタッチすると、色変更
 * 移動すると画像が動く
 * 離すと色が戻る。
 * 長押しで削除。
@@ -21,7 +20,7 @@
 `UIButton`を配置し、ボタンが押された時に動作する関数の中に、以下のコードを書きます。
 
 ```swift
-//ImageViewのインスタンス化
+//UIImageViewのインスタンス化
 var penguinImageView = UIImageView()
 //画像の代入
 penguinImageView.image = UIImage(named: "penguin.png")
@@ -37,7 +36,7 @@ view.addSubview(penguinImageView)
 
 上記のコードを記述することによって、ボタンを押すたびに、ペンギンの画像が画面中央に表示されるようになります。
 
-<h3>UIImageView画像のドラッグ機能の実装</h3>
+<h3>UIImageView画像をドラッグする機能の実装</h3>
 
 次に`UIImageView`のドラッグ機能を実装します。
 
@@ -61,8 +60,6 @@ override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {}
 <h4>画面タッチ時</h4>
 
 画面のタッチ時、タッチした位置に`UIImageView`があるかどうかを確かめます。
-
-`UIImageView`があれば、そのサイズを少し大きくします。
 
 `UIImageView`がタッチされたかどうかの判定に`tag`を使います。`UIImageView`を生成する場所に以下のコードを追加します。
 
@@ -128,8 +125,6 @@ override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 
 長押し機能の実装には`UILongPressGestureRecognizer()`を使います。以下の変数を宣言し、`UILongPressGestureRecognizer()`をインスタンス化します。
 
-
-
 ```swift
 var longGesture = UILongPressGestureRecognizer()
 ```
@@ -145,7 +140,7 @@ longGesture.minimumPressDuration = 0.5
 penguinImageView.addGestureRecognizer(longGesture)
 ```
 
- `viewDidLoad`の外に、`longPress関数`を書きます。長押しされた時に、長押しされた`View`を削除するコードを書きます。
+ `longPress関数`を書きます。長押しされた時に、長押しされた`View`を削除するコードを書きます。
 
 
 

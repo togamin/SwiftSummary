@@ -55,3 +55,5 @@
 * 
 * swiftのコードの説明。
 * TestFlight
+
+スクロールViewとキーボード。

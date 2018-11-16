@@ -1,14 +1,6 @@
 ## 【Swift4】オブジェクト指向プログラミング「継承」について
 
-
-
-LOVEラベル用意
-
-
-
-
-
-
+(未修正)
 
 以前の記事で、オブジェクト指向プログラミングについて説明したのですが、
 
@@ -29,8 +21,8 @@ LOVEラベル用意
 <a href = "https://togamin.com/2018/11/16/object/">＞【Swift4】オブジェクト指向プログラミングとは</a>
 
  ```swift
-//①救急車クラス
-class ambulance{
+//救急車クラス
+class Ambulance{
 	var engin = "エンジン"
     var tireNum = 4//タイヤの数
     var siren = "サイレン"
@@ -47,7 +39,61 @@ class ambulance{
         print("サイレンを止める")
     }
 }
+
+//バスクラス
+class Bus{
+	var engin = "エンジン"
+    var tireNum = 4//タイヤの数
+    var hakkenki = "発券機"
+    func run(){
+    	print("走る")
+    }
+    func stop(){
+        print("止まる")
+    }
+    func makeTicket(){
+    	print("チケットを発行")
+    }
+}
+
+//トラッククラス
+class Truck{
+    var engin = "エンジン"
+    var tireNum = 4//タイヤの数
+    var nidai = "荷台"
+    func run(){
+    	print("走る")
+    }
+    func stop(){
+        print("止まる")
+    }
+    func openNidai(){
+    	print("荷台を開ける")
+    }
+}
  ```
+
+共通部分
+
+```swift
+//共通部分
+var engin = "エンジン"
+    var tireNum = 4//タイヤの数
+func run(){
+  	print("走る")
+}
+func stop(){
+   	print("止まる")
+}
+```
+
+
+
+
+
+
+
+
 
 ただ、既存クラスとして、以下のような「車クラス」がある場合、
 
