@@ -21,6 +21,7 @@
 * [【Swift4】オブジェクト指向プログラミングとは](documents/object.md)
 * [【Swift4】オブジェクト指向プログラミングの継承](documents/threeContents.md)
 * [【Swift4】Tinderのユーザーインターフェース](documents/Tinder2.md)
+* [【Swift4】ジェスチャー 機能を用いてUIImageViewのドラッグ機能を実装](documents/gesture.md)
 * [【Swift4】Firebaseのデータベース「Firestore」の解説](documents/FirestoreQiita.md)
 * [【Swift4】Firestoreを利用した簡易ToDoアプリの作成](documents/FireStore.md)
 * [【Swift4】Firebaseを用いたユーザーログイン機能の実装](documents/FireAuth.md)
@@ -48,7 +49,7 @@
 * [【Swift4】クラス・メソッドの書き方](documents/howClass.md)
 * [【Swift4】オブジェクト指向プログラミングのポリモーフィズム](documents/Polymorphism.md)
 * [【Swift4】AppDelegete.swiftファイルについて](documents/AppDelegete.md)
-* [【Swift4】ジェスチャー 機能を用いてUIImageViewのドラッグ機能を実装](documents/gesture.md)
+* [【Swift4】キーボード表示時、画面をスクロールさせる方法について](documents/keyboard.md)
 * 
 * 
 * 
